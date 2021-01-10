@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<img :src="imgUrl" />
+		</div>
+		
+		<script src="../../js/vue.js"></script>
+		
+		<script>
+			const app = new Vue({
+				el:'#app',
+				data:{
+					imgUrl:'https://lupic.cdn.bcebos.com/20191203/3016760338_23.jpg',
+				}
+			});
+		</script>
+	</body>
+</html>

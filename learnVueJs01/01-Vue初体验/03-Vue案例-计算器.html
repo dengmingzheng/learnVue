@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<h2>当前计数:{{conuter}}</h2>
+			<button @click="add">+</button>
+			<button @click="sub">-</button>
+			<h2 v-html="url"></h2>
+		</div>
+		
+		<script src="../../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:'#app',
+				data:{
+					conuter:0,
+					url:'<a href="http://www.baidu.com">百度一下</a>'
+				},
+				methods:{
+					add(){
+						this.conuter++;
+					},
+					sub(){
+						if(this.conuter >= 1){
+							this.conuter--;
+						}
+						
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

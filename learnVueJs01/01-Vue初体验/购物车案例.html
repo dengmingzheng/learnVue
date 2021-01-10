@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<div v-if="books.length">
+				<table>
+					<thead>
+						<tr>
+							<th>书籍名称</th>
+							<th>出版日期</th>
+							<th>价格</th>
+							<th>购买数量</th>
+							<th>操作</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr v-for="(item,index) in books">
+						
+							<td>{{item.name}}</td>
+							<td>{{item.date}}</td>
+							<td>{{item.price | showPrice}}</td>
+							<td>
+								<button @click="increment(index)">+</button>
+								{{item.num}}
+								<button @click="decrement(index)" :disabled="item.num <= 1">-</button>
+							</td>
+							<td><button @click="removeItem(index)">移除</button></td>
+						</tr>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td>总价:{{totalPrice | showPrice}}</td>
+						</tr>
+					</tfoot>
+				</table>
+						
+			</div>
+		    <h2 v-else>购物车为空</h2> 
+		</div>
+		
+		<script src="../../js/vue.js"></script>
+		<script>
+			const app = new Vue({
+				el:'#app',
+				data:{
+					books:[
+						{name:'算法导论',date:'2020-10-2',price:85,num:1},
+						{name:'UNINX编程',date:'2020-10-2',price:85,num:1},
+						{name:'代码大全',date:'2020-10-2',price:85,num:1},
+						{name:'计算机原理',date:'2020-10-2',price:85,num:1},
+						{name:'小程序开发文档',date:'2020-10-2',price:85,num:1}
+					]
+				},
+				computed:{
+					totalPrice(){
+						let totalPrice = 0;
+						
+						for(let i =0;i < this.books.length;i++){
+							totalPrice += this.books[i].price * this.books[i].num;
+						}
+						
+						return totalPrice;
+					}
+				},
+				methods:{
+					increment(index){
+						this.books[index].num++;
+					},
+					decrement(index){
+						this.books[index].num--;
+					},
+					removeItem(index){
+						this.books.splice(index,1);
+					}
+				},
+				filters:{
+					showPrice(price){
+						return '￥' + price.toFixed(2);
+					}
+				}
+			});
+		</script>
+	</body>
+</html>
