@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<cpn></cpn>
+			<cpn1></cpn1>
+		</div>
+		
+		<!-- 第一种写法 -->
+		<script type="text/x-handlebars-template" id="cpn">
+			<div>
+			  <h2>我是第一种写法</h2>
+			  <p>我是内容</p>
+			</div>
+		</script>
+		
+		<!-- 第二种写法 -->
+		<template id="cpn1">
+			<div>
+			  <h2>我是第二种写法</h2>
+			  <p>我是内容</p>
+			</div>
+		</template>
+		<script src="../../js/vue.js"></script>
+		<script>
+			
+			//2.注册组件--这样注册的组件是全局组件
+			Vue.component('cpn',{
+				template:'#cpn'
+			});
+			
+			const app = new Vue({
+				el:'#app',
+				components:{
+					cpn1:{
+						template:'#cpn1'
+					}
+				}
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<cpn></cpn>
+		</div>
+		
+		<template id="cpn">
+			<div>
+			  <h2>当前计数是:{{counter}}</h2>
+			 <button @click="increment">+</button>
+			 <button @click="decrement">-</button>
+			</div>
+		</template>
+		<script src="../../js/vue.js"></script>
+		<script>
+			
+			//2.注册组件--这样注册的组件是全局组件
+			Vue.component('cpn',{
+				template:'#cpn',
+				data(){
+					return {
+						counter:0
+					}
+				},
+				methods:{
+					increment(){
+						this.counter++
+					},
+					decrement(){
+						this.counter--
+					}
+				}
+			});
+			
+			const app = new Vue({
+				el:'#app'
+			});
+		</script>
+	</body>
+</html>

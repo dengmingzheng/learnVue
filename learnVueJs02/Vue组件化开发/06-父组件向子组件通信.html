@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title></title>
+	</head>
+	<body>
+		<div id="app">
+			<!-- 组件中不能使用驼峰方法,必须使用-分割 -->
+			<cpn :child-moives="movies"></cpn>
+		</div>
+		
+		<template id="cpn">
+			<!-- 如果在组件中有多行,应该在最外面包含一个div,要不然会报错 -->
+			<div>
+				<ul>
+					<li v-for="item in childMoives">{{item}}</li>
+				</ul>
+			</div>
+		</template>
+		
+		<script src="../../js/vue.js"></script>
+		
+		<script>
+			const app = new Vue({
+				el:'#app',
+				data:{
+					movies:['海贼王','海王','海尔兄弟']
+				},
+				components:{
+					cpn:{
+						template:'#cpn',
+						props:{
+							childMoives:{
+								type:Array,
+								//如果是对象或者数组,这里应该使用方法
+								default(){
+									return []
+								},
+								//必须在组件中传值
+								required:true
+							}
+						},
+						data(){
+							return {}
+						}
+					}
+				}
+			})
+		</script>
+	</body>
+</html>
